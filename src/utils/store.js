@@ -1,15 +1,15 @@
 const cards = [
     {
       id: 'card-1',
-      title: 'Make React app',
+      title: 'Uber Eats - $120',
     },
     {
       id: 'card-2',
-      title: 'Say hi to Wendy',
+      title: 'Rent - $540',
     },
     {
       id: 'card-3',
-      title: 'Watch Ducko vid',
+      title: 'Car Insurance - $200',
     },
   ];
   
