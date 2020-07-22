@@ -4,8 +4,20 @@ import './App.css';
 import List from "./components/List/List";
 import store from './utils/store';
 import StoreApi from "./utils/storeApi"
+import {makeStyles} from "@material-ui/core/styles"
+import InputContainer from './components/Input/InputContainer'
+
+const useStyle = makeStyles((theme) =>({
+  root:{
+    display: 'flex',
+    height: "100vh",
+    background: 'green'
+
+  }
+}))
 export default function App() {
   const [data, setData] = useState(store);
+  const classes = useStyle();
   const addMoreCard = (title, listId) => {
     const newCardId = uuid();
     const newCard = {
@@ -27,11 +39,12 @@ export default function App() {
   }
   return (
     <StoreApi.Provider value={{addMoreCard}}>
-    <div>
+    <div className={classes.root}>
       {data.listIds.map((listId) => {
         const list = data.lists[listId];
         return <List list={list} key={listId} />
     })}
+      <InputContainer type="list" />
     </div>
     </StoreApi.Provider>
 )}

@@ -24,22 +24,22 @@ const useStyle = makeStyles((theme) => ({
     },
 }))
 
-export default function InputCard({ setOpen, listId }) {
+export default function InputCard({ setOpen, listId, type }) {
     const classes = useStyle();
     const{addMoreCard} = useContext(storeApi)
-    const [cardTitle, setCardTitle] = useState('')
+    const [title, setTitle] = useState('')
     const handleOnChange = (e) =>{
-        setCardTitle(e.target.value);
+        setTitle(e.target.value);
     };
     const handleBtnConfirm = () => {
-        addMoreCard(cardTitle, listId);
-        setCardTitle('');
+        addMoreCard(title, listId);
+        setTitle('');
         setOpen(false);
     }
 
     const handleBlur = () => {
         setOpen(false);
-        setCardTitle('');
+        setTitle('');
     }
 
     return (
@@ -54,15 +54,15 @@ export default function InputCard({ setOpen, listId }) {
                     inputProps={{
                         classes: classes.input,
                     }}
-                    value={cardTitle}
-                    placeholder="Enter a title for the card.."
+                    value={title}
+                    placeholder={ type === 'card' ? 'Enter a title for this card..' : 'Enter list title..'}
                     />
 
                 </Paper>
             </div>
             <div className={classes.confirm}>
                 <Button className={classes.btnConfirm} onClick= {handleBtnConfirm}>
-                    Add Card
+                    {type === 'card' ? 'Add Card' : 'Add List'}
                 </Button>
                 <IconButton onClick={()=> setOpen(false)}>
                     <ClearIcon />
