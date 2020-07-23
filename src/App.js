@@ -7,6 +7,7 @@ import StoreApi from "./utils/storeApi"
 import {makeStyles} from "@material-ui/core/styles"
 import InputContainer from './components/Input/InputContainer'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import Login from "./Login"
 
 const useStyle = makeStyles((theme) =>({
   root:{
@@ -115,26 +116,37 @@ export default function App() {
     }
   }
 
+  // const [user, setUser] = useState(null)
+  const [user, setUser] = useState({email: "oliver", userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTU1NjMzMTMsInN1YiI6IjY5NDdjYTZhLWUxYzQtNDc1OC04NDc0LTM5MDEyYjYzYzBlNSIsImVtYWlsIjoib2xpdmVyIn0.Z4QY1G9hOkExQl8yNW4qV2kHns6IO5mgIQWdiAZ67lc"})
+
   return (
-    <StoreApi.Provider value={{addMoreCard, addMoreList, updateListTitle}}>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="app" type="list" direction="horizontal">
-          {(provided) => (
-             <div className={classes.root} 
-             ref={provided.innerRef}
-             {...provided.droppableProps}
-             >
-             {data.listIds.map((listId, index) => {
-               const list = data.lists[listId];
-               return <List list={list} key={listId} index={index} />
-               })}
-               <InputContainer type="list" />
-               {provided.placeholder}
-              </div>
-          )}
-        </Droppable>
-      </DragDropContext>
-    </StoreApi.Provider>
+    <>
+    {user ? (
+      <StoreApi.Provider value={{addMoreCard, addMoreList, updateListTitle, userToken: user.userToken}}>
+        <button onClick={() => setUser(null)}>Logout</button>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="app" type="list" direction="horizontal">
+            {(provided) => (
+              <div className={classes.root} 
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              >
+              {data.listIds.map((listId, index) => {
+                const list = data.lists[listId];
+                return <List list={list} key={listId} index={index} />
+                })}
+                <InputContainer type="list" />
+                {provided.placeholder}
+                </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </StoreApi.Provider>
+    ) : (
+      <Login onAuthentication={ (userObject) => setUser(userObject)} />
+    )}
+      
+    </>
 )}
 
 
