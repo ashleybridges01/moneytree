@@ -17,7 +17,7 @@ const useStyle = makeStyles((theme)=>({
     input:{
         margin: theme.spacing(1),
         "&:focus":{
-            background: '#ddd'
+            background: '#F7FBE1'
         }
     }
 }));
