@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {v4 as uuid } from 'uuid';
 import './App.css';
 import List from "./components/List/List";
@@ -8,6 +8,7 @@ import {makeStyles} from "@material-ui/core/styles"
 import InputContainer from './components/Input/InputContainer'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import Login from "./Login"
+import {viewList, createList, createCard} from './utils/APIUtils'
 
 const useStyle = makeStyles((theme) =>({
   root:{
@@ -20,14 +21,22 @@ const useStyle = makeStyles((theme) =>({
   }
 }))
 export default function App() {
-  const [data, setData] = useState(store);
+  const [data, setData] = useState(null);
+  const [user, setUser] = useState({
+    email: "Ashley", 
+    userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTU2NTg1OTQsInN1YiI6IjcyNTY4Y2U3LTBlMjAtNDAyNi1hNTk0LTA1YTI5YWQwNDQ4ZSIsImVtYWlsIjoiQXNobGV5In0.w8ut_sVzBElGqVQWDXpuGxGvXHiPsgNoUJ95KlGK-kA"})
+
+  useEffect(() => {
+    if(user){
+      viewList(user.userToken)
+        .then(setData)
+    }
+  }, [user])
+
+
   const classes = useStyle();
-  const addMoreCard = (title, listId) => {
-    const newCardId = uuid();
-    const newCard = {
-      id: newCardId,
-      title,
-    };
+  const addMoreCard = async (title, listId) => {
+    const newCard = await createCard(listId, title, null, null, null, null, null, user.userToken)
 
     const list = data.lists[listId];
     list.cards = [...list.cards,newCard]
@@ -42,18 +51,14 @@ export default function App() {
     setData(newState);
   };
 
-  const addMoreList = (title) => {
-    const newListId = uuid();
-    const newList = {
-      id:newListId,
-      title,
-      cards:[],
-    };
+  const addMoreList = async (title) => {
+
+    const newList = await createList(title, user.userToken)
     const newState = {
-      listIds:[...data.listIds,newListId],
+      listIds:[...data.listIds,newList.id],
       lists:{
         ...data.lists,
-        [newListId]:newList
+        [newList.id]:newList
       }
     }
     setData(newState);
@@ -117,8 +122,11 @@ export default function App() {
   }
 
   // const [user, setUser] = useState(null)
-  const [user, setUser] = useState({email: "oliver", userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTU1NjMzMTMsInN1YiI6IjY5NDdjYTZhLWUxYzQtNDc1OC04NDc0LTM5MDEyYjYzYzBlNSIsImVtYWlsIjoib2xpdmVyIn0.Z4QY1G9hOkExQl8yNW4qV2kHns6IO5mgIQWdiAZ67lc"})
+  // const [user, setUser] = useState({
+  //   email: "oliver", 
+  //   userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTU1NjMzMTMsInN1YiI6IjY5NDdjYTZhLWUxYzQtNDc1OC04NDc0LTM5MDEyYjYzYzBlNSIsImVtYWlsIjoib2xpdmVyIn0.Z4QY1G9hOkExQl8yNW4qV2kHns6IO5mgIQWdiAZ67lc"})
 
+   
   return (
     <>
     {user ? (
@@ -131,7 +139,7 @@ export default function App() {
               ref={provided.innerRef}
               {...provided.droppableProps}
               >
-              {data.listIds.map((listId, index) => {
+              {data && data.listIds.map((listId, index) => {
                 const list = data.lists[listId];
                 return <List list={list} key={listId} index={index} />
                 })}
