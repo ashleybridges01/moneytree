@@ -9,6 +9,7 @@ import InputContainer from './components/Input/InputContainer'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import Login from "./Login"
 import {viewList, createList, createCard} from './utils/APIUtils'
+import Dashboard from './Dashboard'
 
 const useStyle = makeStyles((theme) =>({
   root:{
@@ -132,6 +133,7 @@ export default function App() {
     {user ? (
       <StoreApi.Provider value={{addMoreCard, addMoreList, updateListTitle, userToken: user.userToken}}>
         <button onClick={() => setUser(null)}>Logout</button>
+        <Dashboard />
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="app" type="list" direction="horizontal">
             {(provided) => (
