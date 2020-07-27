@@ -23,6 +23,7 @@ const useStyle = makeStyles((theme) =>({
 }))
 export default function App() {
   const [data, setData] = useState(null);
+  // const [user, setUser] = useState(null)                         // This line to be used in production
   const [user, setUser] = useState({
     email: "Ashley", 
     userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTU2NTg1OTQsInN1YiI6IjcyNTY4Y2U3LTBlMjAtNDAyNi1hNTk0LTA1YTI5YWQwNDQ4ZSIsImVtYWlsIjoiQXNobGV5In0.w8ut_sVzBElGqVQWDXpuGxGvXHiPsgNoUJ95KlGK-kA"})
@@ -121,11 +122,6 @@ export default function App() {
       setData(newState);
     }
   }
-
-  // const [user, setUser] = useState(null)
-  // const [user, setUser] = useState({
-  //   email: "oliver", 
-  //   userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTU1NjMzMTMsInN1YiI6IjY5NDdjYTZhLWUxYzQtNDc1OC04NDc0LTM5MDEyYjYzYzBlNSIsImVtYWlsIjoib2xpdmVyIn0.Z4QY1G9hOkExQl8yNW4qV2kHns6IO5mgIQWdiAZ67lc"})
 
    
   return (
