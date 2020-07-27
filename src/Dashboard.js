@@ -9,7 +9,7 @@ const Dashboard = () => {
             justifyContent: 'center'
         },
         dashboard: {
-            backgroundColor: "#BAC964",
+            backgroundColor: "silver",
             textAlign: 'left',
             width: "400px",
             border: "2px solid black",
