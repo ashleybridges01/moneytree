@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {v4 as uuid } from 'uuid';
+// import {v4 as uuid } from 'uuid';
 import './App.css';
 import List from "./components/List/List";
-import store from './utils/store';
+// import store from './utils/store';
 import StoreApi from "./utils/storeApi"
 import {makeStyles} from "@material-ui/core/styles"
 import InputContainer from './components/Input/InputContainer'
@@ -25,8 +25,8 @@ export default function App() {
   const [data, setData] = useState(null);
   // const [user, setUser] = useState(null)                         // This line to be used in production
   const [user, setUser] = useState({
-    email: "Ashley", 
-    userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTU2NTg1OTQsInN1YiI6IjcyNTY4Y2U3LTBlMjAtNDAyNi1hNTk0LTA1YTI5YWQwNDQ4ZSIsImVtYWlsIjoiQXNobGV5In0.w8ut_sVzBElGqVQWDXpuGxGvXHiPsgNoUJ95KlGK-kA"})
+    email: "Ash2", 
+    userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTU5OTE1NzQsInN1YiI6IjU2YWRmZjQ3LTg4OGEtNDEwZC1iYjZiLTU2NGNmMzgzN2NjOCIsImVtYWlsIjoiQXNoMiJ9.b5D3-7ZKX5AlkzO6AH_5Imkc4AlDZ9eJc4a3hbIhbPk"})
 
   useEffect(() => {
     if(user){
