@@ -99,11 +99,11 @@ export async function createCard(listId, title, amount, expense, trafficLight, s
 //     return result.data
 // }
 
-// // Delete card (tile)
-// export async function deleteCard(userToken){
-//     const result = await axios.delete(`${backEndURL}/tiles/${cardID}`, {
-//     }, {headers: {
-//         Authorization: `Bearer ${userToken}`
-//     }})
-//     return result.data
-// }
+// Delete card (tile)
+export async function deleteCard(userToken, id){
+    const result = await axios.delete(`${backEndURL}/tiles/${id}`, {
+    }, {headers: {
+        Authorization: `Bearer ${userToken}`
+    }})
+    return result.data
+}

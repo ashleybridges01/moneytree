@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react'
 import {Typography, InputBase} from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import storeApi from '../../utils/storeApi';
 
 const useStyle = makeStyles((theme)=>({
@@ -53,7 +53,7 @@ export default function Title({title, listId}) {
             ) : (
                 <div className={classes.editableTitleContainer}>
                     <Typography onClick={() => setOpen(!open)} className={classes.editableTitle}>{title}</Typography>
-                    <MoreHorizIcon />
+                    <DeleteForeverIcon />
                 </div>
             )}
         </div>

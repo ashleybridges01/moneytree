@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-// import {v4 as uuid } from 'uuid';
 import './App.css';
 import List from "./components/List/List";
 // import store from './utils/store';
@@ -8,8 +7,9 @@ import {makeStyles} from "@material-ui/core/styles"
 import InputContainer from './components/Input/InputContainer'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import Login from "./Login"
-import {viewList, createList, createCard} from './utils/APIUtils'
+import {viewList, createList, createCard, deleteCard} from './utils/APIUtils'
 import Dashboard from './Dashboard'
+
 
 const useStyle = makeStyles((theme) =>({
   root:{
@@ -26,7 +26,10 @@ export default function App() {
   // const [user, setUser] = useState(null)                         // This line to be used in production
   const [user, setUser] = useState({
     email: "Ash2", 
-    userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTU5OTE1NzQsInN1YiI6IjU2YWRmZjQ3LTg4OGEtNDEwZC1iYjZiLTU2NGNmMzgzN2NjOCIsImVtYWlsIjoiQXNoMiJ9.b5D3-7ZKX5AlkzO6AH_5Imkc4AlDZ9eJc4a3hbIhbPk"})
+    userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTYwODE5NDEsInN1YiI6IjU2YWRmZjQ3LTg4OGEtNDEwZC1iYjZiLTU2NGNmMzgzN2NjOCIsImVtYWlsIjoiQXNoMiJ9.tx8Y-BPYArfrdoI5FWwMvqeCxK9g71s6K0tc14NkO1s"})
+
+  localStorage.setItem("token", user.userToken)
+  const storedToken = localStorage.getItem('token')
 
   useEffect(() => {
     if(user){
@@ -36,9 +39,13 @@ export default function App() {
   }, [user])
 
 
+
+
+
+
   const classes = useStyle();
-  const addMoreCard = async (title, listId) => {
-    const newCard = await createCard(listId, title, null, null, null, null, null, user.userToken)
+  const addMoreCard = async (title, listId, amount, expense) => {
+    const newCard = await createCard(listId, title, amount, expense, null, null, null, user.userToken)
 
     const list = data.lists[listId];
     list.cards = [...list.cards,newCard]
@@ -65,6 +72,21 @@ export default function App() {
     }
     setData(newState);
   }
+
+console.log(data)
+  const handleDelete = async (listId, cardId) => {
+    const userToken = localStorage.getItem("token")
+    const result = await deleteCard(userToken, cardId)
+
+    const newData = {...data}
+    newData.lists[listId].cards = data.lists[listId].cards.filter(card => card.id !== cardId)
+
+
+    setData(newData)
+    // NEED TO RERENDER AFTER BACKEND HAS DELETED CARD
+  }
+
+
   const updateListTitle = (title, listId) => {
     const list = data.lists[listId];
     list.title = title;
@@ -123,11 +145,10 @@ export default function App() {
     }
   }
 
-   
   return (
     <>
     {user ? (
-      <StoreApi.Provider value={{addMoreCard, addMoreList, updateListTitle, userToken: user.userToken}}>
+      <StoreApi.Provider value={{addMoreCard, addMoreList, updateListTitle, handleDelete, userToken: user.userToken}}>
         <button onClick={() => setUser(null)}>Logout</button>
         <Dashboard />
         <DragDropContext onDragEnd={onDragEnd}>
