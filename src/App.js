@@ -25,8 +25,8 @@ export default function App() {
   const [data, setData] = useState(null);
   // const [user, setUser] = useState(null)                         // This line to be used in production
   const [user, setUser] = useState({
-    email: "Ash2", 
-    userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTYwODE5NDEsInN1YiI6IjU2YWRmZjQ3LTg4OGEtNDEwZC1iYjZiLTU2NGNmMzgzN2NjOCIsImVtYWlsIjoiQXNoMiJ9.tx8Y-BPYArfrdoI5FWwMvqeCxK9g71s6K0tc14NkO1s"})
+    email: "Usario uno", 
+    userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTYwOTE4OTcsInN1YiI6ImM5YTQ3ZDYyLTYxZTktNDk1Yy04NWIzLTNjZWY2OTg2YTRiNyIsImVtYWlsIjoiVXNhcmlvIHVubyJ9.GeP8QzEg9V9QRWp-xs1hO3VcH3ybq9rx0PHCtyza66o"})
 
   localStorage.setItem("token", user.userToken)
   const storedToken = localStorage.getItem('token')
