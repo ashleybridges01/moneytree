@@ -44,8 +44,8 @@ export default function App() {
 
 
   const classes = useStyle();
-  const addMoreCard = async (title, listId, amount, expense) => {
-    const newCard = await createCard(listId, title, amount, expense, null, null, null, user.userToken)
+  const addMoreCard = async (title, listId, amount, trafficLight) => {
+    const newCard = await createCard(listId, title, amount, trafficLight, null, null, null, user.userToken)
 
     const list = data.lists[listId];
     list.cards = [...list.cards,newCard]
@@ -73,18 +73,30 @@ export default function App() {
     setData(newState);
   }
 
-console.log(data)
+// console.log(data)
   const handleDelete = async (listId, cardId) => {
     const userToken = localStorage.getItem("token")
     const result = await deleteCard(userToken, cardId)
 
-    const newData = {...data}
+    const newData = {...data}  // copying the old data into a new object
+    
+  // finding the cards for this list    Filtering the cards so that the deleted one is removed from the list
     newData.lists[listId].cards = data.lists[listId].cards.filter(card => card.id !== cardId)
-
-
     setData(newData)
-    // NEED TO RERENDER AFTER BACKEND HAS DELETED CARD
   }
+
+  // LIST DELETE TESTING
+
+  // const handleDeleteList = async () => {
+
+  // }
+
+
+
+
+
+
+  // LIST DELETE TEST END
 
 
   const updateListTitle = (title, listId) => {

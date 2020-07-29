@@ -53,7 +53,7 @@ export default function Title({title, listId}) {
             ) : (
                 <div className={classes.editableTitleContainer}>
                     <Typography onClick={() => setOpen(!open)} className={classes.editableTitle}>{title}</Typography>
-                    <DeleteForeverIcon />
+                    {/* <DeleteForeverIcon title={listId} onClick={() => deleteList(card.id)} /> */}
                 </div>
             )}
         </div>

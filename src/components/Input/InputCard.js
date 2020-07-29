@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Paper, InputBase, Button, IconButton } from '@material-ui/core';
+import { Paper, InputBase, Button, IconButton, InputLabel, Select, MenuItem } from '@material-ui/core';
 import ClearIcon from "@material-ui/icons/Clear"
 import { makeStyles, fade} from '@material-ui/core/styles'
 import storeApi from '../../utils/storeApi';
@@ -78,33 +78,13 @@ export default function InputCard({ setOpen, listId, type }) {
                     placeholder={ 'amount'}
                     />
                 </Paper>
-                {/* <FormControl className={classes.margin}>
-                    <InputLabel htmlFor="demo-customized-textbox">Title</InputLabel>
-                    <BootstrapInput id="demo-customized-textbox" value={title} />
-                </FormControl> */}
-                {/* <FormControl className={classes.margin}>
-                    <InputLabel htmlFor="demo-customized-textbox">Amount</InputLabel>
-                    <BootstrapInput id="demo-customized-textbox" value={amount} />
-                </FormControl> */}
-                {/* <FormControl className={classes.margin}>
-                <InputLabel id="demo-customized-select-label">Priority of expense</InputLabel>
-                    <Select
-                    labelId="demo-customized-select-label"
-                    id="demo-customized-select"
-                    value={expense}
-                    onChange={handleChange}
-                    input={<BootstrapInput />}
-                    >
-                    <MenuItem value="">
-                     <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={0}>Priority expense</MenuItem>
-                    <MenuItem value={1}>Medium expense</MenuItem>
-                    <MenuItem value={2}>Luxury</MenuItem>
-                    <MenuItem value={3}>Income</MenuItem>
-                    </Select>
-                </FormControl> */}
-                
+                <InputLabel id="label">Priority of expense</InputLabel>
+                <Select labelId="label" id="select">
+                    <MenuItem value="Red">Critical expense</MenuItem>
+                    <MenuItem value="Amber">Important expense</MenuItem>
+                    <MenuItem value="Green">Luxury</MenuItem>
+                </Select>
+            
             </div>
             <div className={classes.confirm}>
                 <Button className={classes.btnConfirm} onClick= {handleBtnConfirm}>
