@@ -23,10 +23,10 @@ const useStyle = makeStyles((theme) =>({
 }))
 export default function App() {
   const [data, setData] = useState(null);
-  // const [user, setUser] = useState(null)                         // This line to be used in production
-  const [user, setUser] = useState({
-    email: "Ash2", 
-    userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTYwODE5NDEsInN1YiI6IjU2YWRmZjQ3LTg4OGEtNDEwZC1iYjZiLTU2NGNmMzgzN2NjOCIsImVtYWlsIjoiQXNoMiJ9.tx8Y-BPYArfrdoI5FWwMvqeCxK9g71s6K0tc14NkO1s"})
+  const [user, setUser] = useState(null)                         // This line to be used in production
+  // const [user, setUser] = useState({
+  //   email: "Ash2", 
+  //   userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTYwODE5NDEsInN1YiI6IjU2YWRmZjQ3LTg4OGEtNDEwZC1iYjZiLTU2NGNmMzgzN2NjOCIsImVtYWlsIjoiQXNoMiJ9.tx8Y-BPYArfrdoI5FWwMvqeCxK9g71s6K0tc14NkO1s"})
 
   // localStorage.setItem("token", user.userToken)
   const storedToken = localStorage.getItem('token')
