@@ -24,10 +24,10 @@ const Dashboard = () => {
         }        
     }
 
-    let blueItems = 5800;
-    let redItems = 3500;
-    let amberItems = 1450;
-    let greenItems = -100
+    let blueItems = 1400;
+    let redItems = 370;
+    let amberItems = 130;
+    let greenItems = 60;
 
     return (
         <div style={style.background}>

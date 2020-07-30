@@ -19,7 +19,7 @@ const Login = ({onAuthentication}) => {
             backgroundImage: `url(${MoneyTreeLogo})`,
             backgroundSize: "cover",
             height: "100vh",
-            color: "#bac964",
+            color: "#426F8A",
             textAlign: 'center',
         },
         h1: {
@@ -30,7 +30,7 @@ const Login = ({onAuthentication}) => {
 
     return (
         <div style={style.container}>
-            <h1 style={style.h1}>MoneyTree</h1>
+            <h1 style={style.h1}>moneytree</h1>
             <h2>Watch your money grow</h2>
             <input 
                 placeholder="email@address"
