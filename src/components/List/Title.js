@@ -40,7 +40,7 @@ export default function Title({title, listId}) {
             {open ? (
                 <div>
                     <InputBase 
-                    onChange={handleOnChange}
+                    // onChange={handleOnChange}
                     autoFocus
                     value={newTitle}
                     inputProps={{

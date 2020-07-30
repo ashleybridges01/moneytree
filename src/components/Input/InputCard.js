@@ -54,18 +54,67 @@ export default function InputCard({ setOpen, listId, type }) {
 
     const handleTrafficLight = (e) => {
          setTrafficLight(e.target.value)
-         console.log(e.target.value)
     }
 
-  
-    return (
-        <div>
+    if (type==='card') {
+            return (
+                <div>
+                    <div>
+                        <Paper className={classes.card}>
+                            <InputBase 
+                            onChange={handleOnChange}
+                            multiline 
+                            // onBlur ={() => setOpen(false)}
+                            fullWidth 
+                            inputProps={{
+                                classes: classes.input,
+                            }}
+                            value={title}
+                            placeholder={ type === 'card' ? 'Enter a title for this card..' : 'Enter list title..'}
+                            />
+                        </Paper>
+                        <Paper className={classes.card}>
+                        <InputBase 
+                            onChange={handleMoneyChange}
+                            multiline 
+                           // onBlur ={() => setOpen(false)}
+                            fullWidth 
+                            inputProps={{
+                                classes: classes.input,
+                            }}
+                            value={amount}
+                            placeholder={ 'amount'}
+                            />
+                        </Paper>
+                        <FormControl>
+                        <InputLabel id="label">Priority of expense</InputLabel>
+                        <Select labelId="label" id="select" onChange={handleTrafficLight}>
+                            <MenuItem value= "0" >Critical Expense</MenuItem>
+                            <MenuItem value="1">Important expense</MenuItem>
+                            <MenuItem value="2">Luxury</MenuItem>
+                        </Select>
+                        </FormControl>
+                    
+                    </div>
+                    <div className={classes.confirm}>
+                        <Button className={classes.btnConfirm} onClick= {handleBtnConfirm}>
+                            {type === 'card' ? 'Add Card' : 'Add List'}
+                        </Button>
+                        <IconButton onClick={()=> setOpen(false)}>
+                            <ClearIcon />
+                        </IconButton>
+                    </div>
+                </div>
+            ) 
+    } else {
+        return (
             <div>
-                <Paper className={classes.card}>
+                <div>
+        <Paper className={classes.card}>
                     <InputBase 
                     onChange={handleOnChange}
                     multiline 
-                    onBlur ={() => setOpen(false)}
+                    // onBlur ={() => setOpen(false)}
                     fullWidth 
                     inputProps={{
                         classes: classes.input,
@@ -74,37 +123,68 @@ export default function InputCard({ setOpen, listId, type }) {
                     placeholder={ type === 'card' ? 'Enter a title for this card..' : 'Enter list title..'}
                     />
                 </Paper>
-                <Paper className={classes.card}>
-                <InputBase 
-                    onChange={handleMoneyChange}
-                    multiline 
-                    onBlur ={() => setOpen(false)}
-                    fullWidth 
-                    inputProps={{
-                        classes: classes.input,
-                    }}
-                    value={amount}
-                    placeholder={ 'amount'}
-                    />
-                </Paper>
-                <FormControl>
-                <InputLabel id="label">Priority of expense</InputLabel>
-                <Select labelId="label" id="select" onChange={handleTrafficLight}>
-                    <MenuItem value= "0" >Critical Expense</MenuItem>
-                    <MenuItem value="1">Important expense</MenuItem>
-                    <MenuItem value="2">Luxury</MenuItem>
-                </Select>
-                </FormControl>
-            
+                </div>
+                 <div className={classes.confirm}>
+                 <Button className={classes.btnConfirm} onClick= {handleBtnConfirm}>
+                     {type === 'card' ? 'Add Card' : 'Add List'}
+                 </Button>
+                 <IconButton onClick={()=> setOpen(false)}>
+                     <ClearIcon />
+                 </IconButton>
+             </div>
             </div>
-            <div className={classes.confirm}>
-                <Button className={classes.btnConfirm} onClick= {handleBtnConfirm}>
-                    {type === 'card' ? 'Add Card' : 'Add List'}
-                </Button>
-                <IconButton onClick={()=> setOpen(false)}>
-                    <ClearIcon />
-                </IconButton>
-            </div>
-        </div>
-    )
+        )  
+
+    }
 }
+
+// WORKING CODE 
+// return (
+//     <div>
+//         <div>
+//             <Paper className={classes.card}>
+//                 <InputBase 
+//                 onChange={handleOnChange}
+//                 multiline 
+//                 // onBlur ={() => setOpen(false)}
+//                 fullWidth 
+//                 inputProps={{
+//                     classes: classes.input,
+//                 }}
+//                 value={title}
+//                 placeholder={ type === 'card' ? 'Enter a title for this card..' : 'Enter list title..'}
+//                 />
+//             </Paper>
+//             <Paper className={classes.card}>
+//             <InputBase 
+//                 onChange={handleMoneyChange}
+//                 multiline 
+//                // onBlur ={() => setOpen(false)}
+//                 fullWidth 
+//                 inputProps={{
+//                     classes: classes.input,
+//                 }}
+//                 value={amount}
+//                 placeholder={ 'amount'}
+//                 />
+//             </Paper>
+//             <FormControl>
+//             <InputLabel id="label">Priority of expense</InputLabel>
+//             <Select labelId="label" id="select" onChange={handleTrafficLight}>
+//                 <MenuItem value= "0" >Critical Expense</MenuItem>
+//                 <MenuItem value="1">Important expense</MenuItem>
+//                 <MenuItem value="2">Luxury</MenuItem>
+//             </Select>
+//             </FormControl>
+        
+//         </div>
+//         <div className={classes.confirm}>
+//             <Button className={classes.btnConfirm} onClick= {handleBtnConfirm}>
+//                 {type === 'card' ? 'Add Card' : 'Add List'}
+//             </Button>
+//             <IconButton onClick={()=> setOpen(false)}>
+//                 <ClearIcon />
+//             </IconButton>
+//         </div>
+//     </div>
+// )
