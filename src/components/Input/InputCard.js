@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Paper, InputBase, Button, IconButton, InputLabel, Select, MenuItem } from '@material-ui/core';
+import { Paper, InputBase, Button, IconButton, InputLabel, Select, MenuItem, FormControl } from '@material-ui/core';
 import ClearIcon from "@material-ui/icons/Clear"
 import { makeStyles, fade} from '@material-ui/core/styles'
 import storeApi from '../../utils/storeApi';
@@ -37,11 +37,14 @@ export default function InputCard({ setOpen, listId, type }) {
     const handleMoneyChange = (e) =>{
         setAmount(e.target.value);
     }
+    // const trafficLight = useState('')
+    
     const handleBtnConfirm = () => {
         if (type === 'card') {
             addMoreCard(title, listId, amount);
             setTitle('');
             setOpen(false);
+          //  console.log(trafficLight)
         } else {
             addMoreList(title);
             setTitle('');
@@ -78,12 +81,14 @@ export default function InputCard({ setOpen, listId, type }) {
                     placeholder={ 'amount'}
                     />
                 </Paper>
+                <FormControl>
                 <InputLabel id="label">Priority of expense</InputLabel>
                 <Select labelId="label" id="select">
-                    <MenuItem value="Red">Critical expense</MenuItem>
-                    <MenuItem value="Amber">Important expense</MenuItem>
-                    <MenuItem value="Green">Luxury</MenuItem>
+                    <MenuItem value= "0" >Critical Expense</MenuItem>
+                    <MenuItem value="1">Important expense</MenuItem>
+                    <MenuItem value="2">Luxury</MenuItem>
                 </Select>
+                </FormControl>
             
             </div>
             <div className={classes.confirm}>

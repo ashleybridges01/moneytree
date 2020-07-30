@@ -28,7 +28,7 @@ export default function App() {
     email: "Ash2", 
     userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTYwODE5NDEsInN1YiI6IjU2YWRmZjQ3LTg4OGEtNDEwZC1iYjZiLTU2NGNmMzgzN2NjOCIsImVtYWlsIjoiQXNoMiJ9.tx8Y-BPYArfrdoI5FWwMvqeCxK9g71s6K0tc14NkO1s"})
 
-  localStorage.setItem("token", user.userToken)
+  // localStorage.setItem("token", user.userToken)
   const storedToken = localStorage.getItem('token')
 
   useEffect(() => {
