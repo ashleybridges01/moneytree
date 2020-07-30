@@ -37,7 +37,7 @@ export default function InputCard({ setOpen, listId, type }) {
     const handleMoneyChange = (e) =>{
         setAmount(e.target.value);
     }
-    // const trafficLight = useState('')
+    const [trafficLight, setTrafficLight] = useState('')
     
     const handleBtnConfirm = () => {
         if (type === 'card') {
@@ -51,6 +51,12 @@ export default function InputCard({ setOpen, listId, type }) {
             setOpen(false);
         }
     }
+
+    const handleTrafficLight = (e) => {
+         setTrafficLight(e.target.value)
+         console.log(e.target.value)
+    }
+
   
     return (
         <div>
@@ -83,7 +89,7 @@ export default function InputCard({ setOpen, listId, type }) {
                 </Paper>
                 <FormControl>
                 <InputLabel id="label">Priority of expense</InputLabel>
-                <Select labelId="label" id="select">
+                <Select labelId="label" id="select" onChange={handleTrafficLight}>
                     <MenuItem value= "0" >Critical Expense</MenuItem>
                     <MenuItem value="1">Important expense</MenuItem>
                     <MenuItem value="2">Luxury</MenuItem>
